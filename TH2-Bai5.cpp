@@ -150,7 +150,7 @@ int main(){
         cin>>a;
         while(true){
             cout<<"\n===== CHUONG TRINH KIEM TRA NGAY =====\n";
-            cout<<"1. Dang thoat chuong trinh"<<endl;
+            cout<<"1. Thoat chuong trinh"<<endl;
             cout<<"2. In ra ngay thang nam vua nhap"<<endl;
             cout<<"3. Xem ngay tiep theo"<<endl;
             cout<<"4. Xem ngay truoc do"<<endl;
