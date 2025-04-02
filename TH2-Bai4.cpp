@@ -5,23 +5,29 @@ using namespace std;
 class TamGiac{
     private:
         double a, b, c;
+        static int dem;
     public:
         ~TamGiac();
         TamGiac();
         TamGiac(double, double, double);
+        TamGiac& operator=(const TamGiac& tg);
         void Nhap();
-        void Xuat();
+        void Xuat() const;
         double GetA() const;
         double GetB() const;
         double GetC() const;
+        static int GetDem();
         void SetA(double);
         void SetB(double);
         void SetC(double);
+        friend istream& operator>>(istream& in, TamGiac& tg);
+        friend ostream& operator<<(ostream& out, const TamGiac& tg);
         bool KiemTraTamGiacHopLe() const;
         string PhanLoaiTamGiac() const;
         double ChuViTamGiac() const;
         double DienTichTamGiac() const;
 };
+int TamGiac::dem=0;
 TamGiac::~TamGiac(){
 
 }
@@ -33,6 +39,9 @@ TamGiac::TamGiac(double a, double b, double c){
     this->b=b;
     this->c=c;
 }
+TamGiac& TamGiac::operator=(const TamGiac& tg){
+    a=tg.a; b=tg.b; c=tg.c;
+}
 double TamGiac::GetA() const{
     return this->a;
 }
@@ -42,6 +51,9 @@ double TamGiac::GetB() const{
 double TamGiac::GetC() const{
     return this->c;
 }
+int TamGiac::GetDem(){
+    return dem;
+}
 void TamGiac::SetA(double a){
     this->a=a;
 }
@@ -50,6 +62,14 @@ void TamGiac::SetB(double b){
 }
 void TamGiac::SetC(double c){
     this->c=c;
+}
+istream& operator>>(istream& in, TamGiac& tg){
+    tg.Nhap(); 
+    return in;
+}
+ostream& operator<<(ostream& out, const TamGiac& tg){
+    tg.Xuat();
+    return out;
 }
 void TamGiac::Nhap(){
     cout<<"Nhap do dai ba canh cua tam giac "<<endl;
@@ -77,7 +97,7 @@ double TamGiac::DienTichTamGiac() const{
     double p=ChuViTamGiac()/2.0;
     return KiemTraTamGiacHopLe()?sqrt(p*(p-a)*(p-b)*(p-c)):0;
 }
-void TamGiac::Xuat(){
+void TamGiac::Xuat() const{
     cout<<"Do dai ba canh cua tam giac: "<<a<<", "<<b<<", "<<c<<endl;
     if(KiemTraTamGiacHopLe()){
         cout<<"Tam giac thuoc loai "<<PhanLoaiTamGiac()<<endl;
